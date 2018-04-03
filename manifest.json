@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "unscroll",
+  "description": "unscroll",
+  "version": "0.0.1",
+
+  "applications": {
+    "gecko": {
+      "id": "unscroll@ris58h"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
