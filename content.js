@@ -30,22 +30,28 @@ document.addEventListener("scroll", () => {
     beforeScrollTimestamp = newTimestamp;
 });
 
+let prevKeyIsGraveAccent = false;
 document.addEventListener('keyup', function(e) {
-    if (e.key == 'q') { //TODO key
-        if (previousState != null) {
-            const s = state();
-            if (s.x != previousState.x || s.y != previousState.y) {
-                // printDebugInfo("before unscroll");
-                unscrolling = true;
-
-                window.scrollTo(previousState.x, previousState.y);
-                
-                beforeScrollState = previousState;
-                beforeScrollTimestamp = Date.now();
-                previousState = s;
-
-                unscrolling = false;
+    if (e.key == '`') {
+        if (prevKeyIsGraveAccent) {
+            prevKeyIsGraveAccent = false;
+            if (previousState != null) {
+                const s = state();
+                if (s.x != previousState.x || s.y != previousState.y) {
+                    // printDebugInfo("before unscroll");
+                    unscrolling = true;
+    
+                    window.scrollTo(previousState.x, previousState.y);
+                    
+                    beforeScrollState = previousState;
+                    beforeScrollTimestamp = Date.now();
+                    previousState = s;
+    
+                    unscrolling = false;
+                }
             }
+        } else {
+            prevKeyIsGraveAccent = true;
         }
 	}
 });
